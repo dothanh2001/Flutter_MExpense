@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "825444946208",
+    "project_id": "m-expense-7a06e",
+    "storage_bucket": "m-expense-7a06e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825444946208:android:5b515884a6760e3595c745",
+        "android_client_info": {
+          "package_name": "com.example.flutter_mexpense"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825444946208-34d42pnfmfs5hm918nltjpe0d21slvtg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWMOKDnmHn0OMxeFvPFXYjo9beBULpx8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825444946208-34d42pnfmfs5hm918nltjpe0d21slvtg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
