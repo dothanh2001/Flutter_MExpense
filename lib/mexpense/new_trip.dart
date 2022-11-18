@@ -112,7 +112,9 @@ class _NewTripState extends State<NewTrip> {
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: TextFormField(
                     controller: txtDate,
-                    decoration: const InputDecoration(icon: Icon(Icons.calendar_today), labelText: "Enter Date"),
+                    decoration: const InputDecoration(
+                        icon: Icon(Icons.calendar_today),
+                        labelText: "Enter Date"),
                     readOnly: true, //user cant change text
                     onTap: () async {
                       await showDatePicker(
@@ -122,7 +124,8 @@ class _NewTripState extends State<NewTrip> {
                         lastDate: DateTime(2025),
                       ).then((selectedDate) {
                         if (selectedDate != null) {
-                          txtDate.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+                          txtDate.text =
+                              DateFormat('yyyy-MM-dd').format(selectedDate);
                         }
                       });
                     },
@@ -137,7 +140,7 @@ class _NewTripState extends State<NewTrip> {
                   ),
                 ),
                 // Risk
-                Padding(
+                /*Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: DropdownButtonFormField(
                     value: risk,
@@ -169,7 +172,7 @@ class _NewTripState extends State<NewTrip> {
                       return text;
                     },
                   ),
-                ),
+                ),*/
                 //Description
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
@@ -185,7 +188,8 @@ class _NewTripState extends State<NewTrip> {
                   child: TextFormField(
                     controller: txtNumber,
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(hintText: "Number of participants"),
+                    decoration: const InputDecoration(
+                        hintText: "Number of participants"),
                   ),
                 ),
 
@@ -221,7 +225,8 @@ class _NewTripState extends State<NewTrip> {
         .collection(Constants.fsTrip)
         .doc(widget.theTrip!.id)
         .delete()
-        .then((_) => goToRoute(RouteNames.TripList, "document deleted"), onError: (e) => print("Error updating document $e"));
+        .then((_) => goToRoute(RouteNames.TripList, "document deleted"),
+            onError: (e) => print("Error updating document $e"));
   }
 
   void goToRoute(String routeName, [String msg = ""]) {
@@ -249,20 +254,30 @@ class _NewTripState extends State<NewTrip> {
         }
 
         var aTrip = TripEntity.newTrip(
-            tripName.toString(), txtDestination.text, txtDate.text, risk.toString(), txtDescription.text, int.parse(txtNumber.text));
+            tripName.toString(),
+            txtDestination.text,
+            txtDate.text,
+            'risk.toString()',
+            txtDescription.text,
+            int.parse(txtNumber.text));
         var tId = widget.theTrip!.id;
         if (tId == Constants.newTripId) {
           //add a new book
-          FirebaseFirestore.instance.collection(Constants.fsTrip).add(aTrip.getHashMap()).then(
-              (docSnapshot) => goToRoute(RouteNames.TripList, "Document added with id: ${docSnapshot.id}"),
-              onError: (e) => print("Error updating document $e"));
+          FirebaseFirestore.instance
+              .collection(Constants.fsTrip)
+              .add(aTrip.getHashMap())
+              .then(
+                  (docSnapshot) => goToRoute(RouteNames.TripList,
+                      "Document added with id: ${docSnapshot.id}"),
+                  onError: (e) => print("Error updating document $e"));
         } else {
           //update an existing book
           FirebaseFirestore.instance
               .collection(Constants.fsTrip)
               .doc(tId)
               .update(aTrip.getHashMap())
-              .then((_) => goToRoute(RouteNames.TripList, "Document saved"), onError: (e) => print("Error updating document $e"));
+              .then((_) => goToRoute(RouteNames.TripList, "Document saved"),
+                  onError: (e) => print("Error updating document $e"));
         }
       });
     }

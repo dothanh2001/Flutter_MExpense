@@ -15,7 +15,7 @@ import 'mexpense/route_names.dart';
 // }
 
 Future main() async {
-      WidgetsFlutterBinding.ensureInitialized();
+     WidgetsFlutterBinding.ensureInitialized();
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
